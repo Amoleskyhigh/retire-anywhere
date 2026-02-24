@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retire Anywhere V6.7 - Professional Global Explorer</title>
+    <title>Retire Anywhere V6.8 - Professional Global Explorer</title>
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
@@ -105,7 +105,7 @@
     <div id="map"></div>
 
     <div class="ui-panel">
-        <h1 id="ui-title">Retire Anywhere V6.7</h1>
+        <h1 id="ui-title">Retire Anywhere V6.8</h1>
         
         <div class="nav-tabs">
             <div id="tab-map" class="nav-tab active" onclick="switchTab('map')">Explorer</div>
@@ -220,7 +220,7 @@
 
         const i18n = {
             en: {
-                title: "Retire Anywhere V6.7", tabMap: "Explorer", tabPostcard: "Postcard Studio",
+                title: "Retire Anywhere V6.8", tabMap: "Explorer", tabPostcard: "Postcard Studio",
                 ess: "Essential", com: "Comfortable", lux: "Luxury", single: "Single", couple: "Couple", family: "Family",
                 reached: "TARGET REACHED", notReached: "ASSETS NEEDED", costLabel: "Monthly Cost", goalLabel: "Goal Assets",
                 fail: "Needed", visitor: "Visitors", methLink: "Methodology & Calculations",
@@ -236,7 +236,7 @@
                 `
             },
             zh: {
-                title: "全球退休夢想圖 V6.7", tabMap: "地圖探索", tabPostcard: "明信片工作室",
+                title: "全球退休夢想圖 V6.8", tabMap: "地圖探索", tabPostcard: "明信片工作室",
                 ess: "基本生活", com: "舒適生活", lux: "奢華生活", single: "單人", couple: "雙人", family: "一家四口",
                 reached: "已達成目標", notReached: "尚需資產", costLabel: "預估月支出", goalLabel: "目標總資產",
                 fail: "尚未達標", visitor: "訪客人數", methLink: "數據與計算基準說明",
@@ -338,7 +338,7 @@
                     const marker = L.circleMarker(data.coords, { radius: isReached ? 16 : 10, fillColor: isReached ? modeColors[currentMode] : '#ef4444', color: "#fff", weight: 2, opacity: 1, fillOpacity: 0.8 }).addTo(map);
                     const name = currentLang === 'zh' ? data.zh : cityName;
                     
-                    marker.bindTooltip(`<div style="text-align:center"><b>${name}</b><br><img src="${data.img}" class="tooltip-img"></div>`, { className: 'leaflet-tooltip-custom', direction: 'top', offset: [0, -10] });
+                    marker.bindTooltip(`<div style="text-align:center"><b>${name}</b><br><img src="${data.img}" class="tooltip-img" onerror="this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b'"></div>`, { className: 'leaflet-tooltip-custom', direction: 'top', offset: [0, -10] });
                     
                     marker.on('click', () => {
                         const t = i18n[currentLang];
