@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Semiconductor Engineer & Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0e0f0f; --surface: #161717; --surface2: #1e2020; --border: #2a2d2d;
+      --text: #e8e6e1; --muted: #7a7d7d; --accent: #c8f55a; --accent2: #5af5c8;
+      --accent3: #f5c85a; --danger: #f55a5a;
+      --font-display: 'Fraunces', Georgia, serif; --font-body: 'DM Sans', sans-serif; --font-mono: 'DM Mono', monospace;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.7;overflow-x:hidden}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.35}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(14,15,15,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .nav-logo{font-family:var(--font-mono);font-size:.8rem;letter-spacing:.08em;color:var(--accent);text-decoration:none}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.06em;color:var(--muted);text-decoration:none}
+    .nav-links a:hover{color:var(--text)}
+    section{display:none;min-height:100vh;padding:7rem 3rem 5rem;max-width:1100px;margin:0 auto;animation:fadeUp .45s ease forwards}
+    section.active{display:block}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    .eyebrow{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+    h1{font-family:var(--font-display);font-weight:600;font-size:clamp(2.8rem,6vw,5.2rem);line-height:1.08;letter-spacing:-.02em;color:var(--text)}
+    h2{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:600;line-height:1.15;color:var(--text)}
+    h3{font-size:1.05rem;font-weight:500;color:var(--text)}
+    .hero{padding-top:4rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;min-height:85vh}
+    .hero-headline{margin:1.2rem 0 1.8rem}.hero-headline span{display:block}
+    .italic-line{font-style:italic;font-weight:300;color:var(--muted)}
+    .hero-sub{font-size:1.05rem;color:#9a9790;max-width:460px;margin-bottom:2.2rem;line-height:1.8}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.6rem;border-radius:2px;font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;cursor:pointer;text-decoration:none;border:none}
+    .btn-primary{background:var(--accent);color:#0e0f0f}.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+    .hero-right{display:flex;flex-direction:column;gap:1rem;padding-top:5rem}
+    .strength-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:1.4rem 1.6rem}
+    .sc-label{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+    .featured-strip{margin-top:4rem;padding-top:2rem;border-top:1px solid var(--border)}
+    .strip-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.4rem}
+    .project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .pcard,.project-row,.skill-block,.insight-card,.contact-link,.contact-note,.sidebar-block{background:var(--surface);border:1px solid var(--border);border-radius:4px}
+    .pcard{padding:1.2rem;cursor:pointer}
+    .pcard-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.8rem}
+    .tag{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;padding:.2rem .55rem;border-radius:2px;text-transform:uppercase}
+    .tag-ai{background:rgba(200,245,90,.12);color:var(--accent);border:1px solid rgba(200,245,90,.25)}
+    .tag-data{background:rgba(90,245,200,.1);color:var(--accent2);border:1px solid rgba(90,245,200,.22)}
+    .tag-eng{background:rgba(245,200,90,.1);color:var(--accent3);border:1px solid rgba(245,200,90,.22)}
+    .tag-auto{background:rgba(245,90,90,.1);color:var(--danger);border:1px solid rgba(245,90,90,.2)}
+    .divider{height:1px;background:var(--border);margin:3rem 0}
+    .about-layout{display:grid;grid-template-columns:3fr 2fr;gap:4rem;margin-top:2rem}
+    .about-body p{margin-bottom:1rem;color:#b5b2ab}
+    .sidebar-block{padding:1.2rem;margin-bottom:1rem}.sb-label{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent3);margin-bottom:.8rem}
+    .sidebar-block ul{list-style:none;display:flex;flex-direction:column;gap:.45rem}.sidebar-block li{font-size:.9rem;color:var(--muted)}
+    .projects-list{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}.project-row{padding:1.4rem 1.6rem;display:grid;grid-template-columns:1fr auto;gap:1.2rem;cursor:pointer}
+    .pr-num{font-family:var(--font-mono);font-size:.7rem;color:var(--muted);letter-spacing:.1em;margin-bottom:.5rem}
+    #project-detail{display:none} #project-detail.active{display:block}
+    .back-btn{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);background:none;border:none;cursor:pointer;margin-bottom:2rem}
+    .pd-tldr{background:rgba(200,245,90,.07);border:1px solid rgba(200,245,90,.2);border-radius:4px;padding:1.2rem;margin:1.4rem 0 2rem}
+    .pd-meta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}.meta-box{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:1rem}
+    .mb-val{font-family:var(--font-display);font-size:1.6rem;color:var(--accent)} .mb-label{font-family:var(--font-mono);font-size:.68rem;color:var(--muted)}
+    .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:2rem}.skill-block{padding:1.2rem}
+    .skill-block-title{font-family:var(--font-mono);font-size:.7rem;color:var(--accent);margin-bottom:1rem}
+    .skill-item{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem}.skill-name{font-size:.9rem}
+    .skill-bar{flex:0 0 120px;height:3px;background:var(--border)}.skill-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+    .insights-list{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}.insight-card{padding:1.4rem}
+    .contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:2rem}
+    .contact-links{display:flex;flex-direction:column;gap:.8rem}.contact-link{display:flex;gap:1rem;padding:1rem;text-decoration:none}.cl-icon{width:36px;height:36px;display:grid;place-items:center;background:var(--surface2);border:1px solid var(--border)}
+    .cl-label{font-family:var(--font-mono);font-size:.65rem;color:var(--muted)} .cl-val{font-size:.9rem;color:var(--text)}
+    .contact-note{padding:1.4rem}.cn-label{font-family:var(--font-mono);font-size:.68rem;color:var(--accent);margin-bottom:.8rem}
+    footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center}
+    .footer-status{display:flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.68rem;color:var(--muted)}
+    .status-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+    @media (max-width:820px){nav{padding:1rem 1.2rem}.nav-links{gap:1rem}section{padding:6rem 1.2rem 3rem}.hero,.project-grid,.about-layout,.skills-grid,.contact-layout{grid-template-columns:1fr}footer{flex-direction:column;gap:.5rem;text-align:center}}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#" class="nav-logo" onclick="showSection('home')">// eng.portfolio</a>
+    <ul class="nav-links">
+      <li><a href="#" onclick="showSection('home')">Home</a></li>
+      <li><a href="#" onclick="showSection('about')">About</a></li>
+      <li><a href="#" onclick="showSection('projects')">Projects</a></li>
+      <li><a href="#" onclick="showSection('skills')">Skills</a></li>
+      <li><a href="#" onclick="showSection('insights')">Insights</a></li>
+      <li><a href="#" onclick="showSection('contact')">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="home" class="active">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">// Semiconductor · AI · Systems</p>
+        <div class="hero-headline">
+          <h1><span>Engineer.</span><span>Builder.</span><span class="italic-line">Problem Solver.</span></h1>
+        </div>
+        <p class="hero-sub">I work at the intersection of <em>semiconductor engineering</em>, <em>data-driven analysis</em>, and <em>AI-powered workflows</em> — turning complex failure modes into fixable problems, and manual processes into intelligent systems.</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap">
+          <a href="#" class="btn btn-primary" onclick="showSection('projects')">View Projects →</a>
+          <a href="#" class="btn btn-ghost" onclick="showSection('contact')">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="strength-card"><p class="sc-label">01 · Engineering Depth</p><h3>Foundry & Reliability Engineering</h3><p>From yield ramp to failure analysis, I understand semiconductor processes where real problems hide.</p></div>
+        <div class="strength-card"><p class="sc-label">02 · Data Intelligence</p><h3>Analysis That Leads to Action</h3><p>JMP + Python + structured thinking to drive decisions from messy fab data.</p></div>
+        <div class="strength-card"><p class="sc-label">03 · AI Workflow Architecture</p><h3>Automating the Repeatable</h3><p>I design LLM workflows to remove friction from engineering operations.</p></div>
+      </div>
+    </div>
+
+    <div class="featured-strip">
+      <div class="strip-header"><h2 style="font-size:1.4rem">Featured Work</h2><a href="#" onclick="showSection('projects')" style="color:var(--muted);text-decoration:none">All projects →</a></div>
+      <div class="project-grid">
+        <div class="pcard" onclick="showProject('p1')"><div class="pcard-tags"><span class="tag tag-ai">AI</span><span class="tag tag-data">Data</span></div><h3>Yield Signal Detection Pipeline</h3><p>Automated detection of early yield drift patterns before escapes.</p></div>
+        <div class="pcard" onclick="showProject('p2')"><div class="pcard-tags"><span class="tag tag-auto">Automation</span><span class="tag tag-eng">Engineering</span></div><h3>AI-Assisted Failure Report Generator</h3><p>Generate structured FA report drafts in under 2 minutes.</p></div>
+        <div class="pcard" onclick="showProject('p3')"><div class="pcard-tags"><span class="tag tag-data">Data</span><span class="tag tag-eng">Engineering</span></div><h3>Customer Yield Correlation Dashboard</h3><p>Correlate wafer-level test data with field return patterns.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <p class="eyebrow">// About Me</p>
+    <h2>I build things that make engineering work better.</h2>
+    <div class="about-layout">
+      <div class="about-body">
+        <p>I started in semiconductor process engineering, then expanded into data systems and AI workflows.</p>
+        <p>My core focus is reducing engineering friction: faster insight, clearer decisions, repeatable systems.</p>
+        <p>When LLMs became practical, I applied them directly to engineering reporting, triage, and knowledge workflows.</p>
+      </div>
+      <div>
+        <div class="sidebar-block"><p class="sb-label">// Core Strengths</p><ul><li>Systems thinking across complex processes</li><li>Cross-functional communication</li><li>Structured problem decomposition</li><li>Data storytelling that drives action</li></ul></div>
+        <div class="sidebar-block"><p class="sb-label">// Forward Direction</p><ul><li>AI workflow design for engineering orgs</li><li>LLM-assisted analysis pipelines</li><li>Engineering knowledge systems</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <p class="eyebrow">// Projects</p>
+    <h2>Real problems. Real solutions.</h2>
+    <div class="projects-list">
+      <div class="project-row" onclick="showProject('p1')"><div><p class="pr-num">01</p><h3>Yield Signal Detection Pipeline</h3></div><div class="pcard-tags"><span class="tag tag-data">Data</span><span class="tag tag-ai">AI</span></div></div>
+      <div class="project-row" onclick="showProject('p2')"><div><p class="pr-num">02</p><h3>AI-Assisted Failure Report Generator</h3></div><div class="pcard-tags"><span class="tag tag-ai">AI</span><span class="tag tag-auto">Automation</span></div></div>
+      <div class="project-row" onclick="showProject('p3')"><div><p class="pr-num">03</p><h3>Customer Yield Correlation Dashboard</h3></div><div class="pcard-tags"><span class="tag tag-data">Data</span><span class="tag tag-eng">Engineering</span></div></div>
+      <div class="project-row" onclick="showProject('p4')"><div><p class="pr-num">04</p><h3>Engineering Insight Channel</h3></div><div class="pcard-tags"><span class="tag tag-ai">AI</span><span class="tag tag-auto">Automation</span></div></div>
+      <div class="project-row" onclick="showProject('p5')"><div><p class="pr-num">05</p><h3>Reliability Stress Correlation Study</h3></div><div class="pcard-tags"><span class="tag tag-eng">Engineering</span><span class="tag tag-data">Data</span></div></div>
+    </div>
+  </section>
+
+  <section id="project-detail">
+    <button class="back-btn" onclick="showSection('projects')">← Back to Projects</button>
+    <div id="project-detail-content"></div>
+  </section>
+
+  <section id="skills">
+    <p class="eyebrow">// Skills & Toolkit</p>
+    <h2>Deep in the stack. End to end.</h2>
+    <div class="skills-grid">
+      <div class="skill-block"><p class="skill-block-title">// Semiconductor · Foundry · Reliability</p><div class="skill-item"><span class="skill-name">Yield Engineering</span><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div><div class="skill-item"><span class="skill-name">Failure Analysis</span><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div></div>
+      <div class="skill-block"><p class="skill-block-title">// Data Analysis</p><div class="skill-item"><span class="skill-name">JMP</span><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div><div class="skill-item"><span class="skill-name">Python</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div></div>
+      <div class="skill-block"><p class="skill-block-title">// AI & Workflow Automation</p><div class="skill-item"><span class="skill-name">Prompt Engineering</span><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div><div class="skill-item"><span class="skill-name">AI Workflow Design</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div></div>
+      <div class="skill-block"><p class="skill-block-title">// Communication</p><div class="skill-item"><span class="skill-name">Technical Reporting</span><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div><div class="skill-item"><span class="skill-name">Cross-functional Collaboration</span><div class="skill-bar"><div class="skill-fill" style="width:86%"></div></div></div></div>
+    </div>
+  </section>
+
+  <section id="insights">
+    <p class="eyebrow">// Insights</p>
+    <h2>Thinking out loud about engineering & AI.</h2>
+    <div class="insights-list">
+      <div class="insight-card"><h3>The First LLM Tool I Built at Work</h3><p>What worked, what failed, and why defining “good output” mattered most.</p></div>
+      <div class="insight-card"><h3>Why Most Yield Analysis Stops Too Early</h3><p>A framework to move from symptom-level charts to system-level causes.</p></div>
+      <div class="insight-card"><h3>AI in the Engineering Workflow: A Practical Stack</h3><p>The tools and setup that actually stick in day-to-day engineering work.</p></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <p class="eyebrow">// Contact</p>
+    <div class="contact-layout">
+      <div>
+        <h2>Let's talk about real problems.</h2>
+        <p style="color:#9a9790;margin:1rem 0 1.2rem">Open to conversations about engineering challenges, AI workflow projects, and practical collaboration.</p>
+        <div class="contact-links">
+          <a href="mailto:your@email.com" class="contact-link"><div class="cl-icon">✉</div><div><p class="cl-label">Email</p><p class="cl-val">your@email.com</p></div></a>
+          <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank"><div class="cl-icon">in</div><div><p class="cl-label">LinkedIn</p><p class="cl-val">linkedin.com/in/yourprofile</p></div></a>
+          <a href="https://github.com/yourgithub" class="contact-link" target="_blank"><div class="cl-icon">⌥</div><div><p class="cl-label">GitHub</p><p class="cl-val">github.com/yourusername</p></div></a>
+        </div>
+      </div>
+      <div class="contact-note"><p class="cn-label">// Good reasons to reach out</p><p>Yield / reliability problems needing a second perspective.</p><p>AI tooling for engineering teams.</p><p>Collaboration at the engineering × AI boundary.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 · Built with intention, not a template</p>
+    <div class="footer-status"><span class="status-dot"></span> Available for select projects</div>
+  </footer>
+
+  <script>
+    const projects = {
+      p1: {title:'Yield Signal Detection Pipeline',tldr:'Automated yield drift detection across 3 nodes.',results:[{val:'40%',label:'Faster detection'},{val:'3',label:'Process nodes'},{val:'2',label:'Escapes prevented'}]},
+      p2: {title:'AI-Assisted Failure Report Generator',tldr:'LLM-generated FA draft in under 2 minutes.',results:[{val:'80%',label:'Time reduction'},{val:'50+',label:'Reports generated'},{val:'~2 min',label:'Draft time'}]},
+      p3: {title:'Customer Yield Correlation Dashboard',tldr:'Linked wafer-level test to field return signatures.',results:[{val:'2',label:'Repeat escapes resolved'},{val:'60%',label:'Faster response'},{val:'1',label:'New guardband strategy'}]},
+      p4: {title:'Engineering Insight Channel',tldr:'AI-assisted content pipeline for practical engineering knowledge.',results:[{val:'3×',label:'Output increase'},{val:'1',label:'Unified pipeline'},{val:'↑',label:'Audience growth'}]},
+      p5: {title:'Reliability Stress Correlation Study',tldr:'HTOL/HAST correlation study enabling safer process window expansion.',results:[{val:'15%',label:'Window expanded'},{val:'1',label:'Platform qualified'},{val:'0',label:'Yield impact'}]}
+    };
+
+    function showSection(id){
+      document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+      const target=document.getElementById(id);
+      if(target){target.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}return false;
+    }
+
+    function showProject(id){
+      const p=projects[id]; if(!p) return;
+      const results=(p.results||[]).map(r=>`<div class='meta-box'><div class='mb-val'>${r.val}</div><div class='mb-label'>${r.label}</div></div>`).join('');
+      document.getElementById('project-detail-content').innerHTML = `
+        <h1 style='font-size:clamp(1.8rem,4vw,3rem); margin-bottom:.5rem'>${p.title}</h1>
+        <div class='pd-tldr'><p>${p.tldr}</p></div>
+        <div class='pd-meta-grid'>${results}</div>
+      `;
+      showSection('project-detail');
+    }
+  </script>
+</body>
+</html>
