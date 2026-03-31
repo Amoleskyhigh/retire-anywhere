@@ -116,6 +116,7 @@
         <div class="pcard" onclick="showProject('p1')"><div class="pcard-tags"><span class="tag tag-ai">AI</span><span class="tag tag-data">Data</span></div><h3>Yield Signal Detection Pipeline</h3><p>Automated detection of early yield drift patterns before escapes.</p></div>
         <div class="pcard" onclick="showProject('p2')"><div class="pcard-tags"><span class="tag tag-auto">Automation</span><span class="tag tag-eng">Engineering</span></div><h3>AI-Assisted Failure Report Generator</h3><p>Generate structured FA report drafts in under 2 minutes.</p></div>
         <div class="pcard" onclick="showProject('p3')"><div class="pcard-tags"><span class="tag tag-data">Data</span><span class="tag tag-eng">Engineering</span></div><h3>Customer Yield Correlation Dashboard</h3><p>Correlate wafer-level test data with field return patterns.</p></div>
+        <div class="pcard" onclick="showProject('p6')"><div class="pcard-tags"><span class="tag tag-data">Data</span><span class="tag tag-auto">Automation</span></div><h3>Market Research Dashboard (Pro)</h3><p>Public web dashboard for Fear & Greed, VIX, Shiller PE, and ETF signals.</p></div>
       </div>
     </div>
   </section>
@@ -145,6 +146,7 @@
       <div class="project-row" onclick="showProject('p3')"><div><p class="pr-num">03</p><h3>Customer Yield Correlation Dashboard</h3></div><div class="pcard-tags"><span class="tag tag-data">Data</span><span class="tag tag-eng">Engineering</span></div></div>
       <div class="project-row" onclick="showProject('p4')"><div><p class="pr-num">04</p><h3>Engineering Insight Channel</h3></div><div class="pcard-tags"><span class="tag tag-ai">AI</span><span class="tag tag-auto">Automation</span></div></div>
       <div class="project-row" onclick="showProject('p5')"><div><p class="pr-num">05</p><h3>Reliability Stress Correlation Study</h3></div><div class="pcard-tags"><span class="tag tag-eng">Engineering</span><span class="tag tag-data">Data</span></div></div>
+      <div class="project-row" onclick="showProject('p6')"><div><p class="pr-num">06</p><h3>Market Research Dashboard (Pro)</h3></div><div class="pcard-tags"><span class="tag tag-data">Data</span><span class="tag tag-auto">Automation</span></div></div>
     </div>
   </section>
 
@@ -201,7 +203,8 @@
       p2: {title:'AI-Assisted Failure Report Generator',tldr:'LLM-generated FA draft in under 2 minutes.',results:[{val:'80%',label:'Time reduction'},{val:'50+',label:'Reports generated'},{val:'~2 min',label:'Draft time'}]},
       p3: {title:'Customer Yield Correlation Dashboard',tldr:'Linked wafer-level test to field return signatures.',results:[{val:'2',label:'Repeat escapes resolved'},{val:'60%',label:'Faster response'},{val:'1',label:'New guardband strategy'}]},
       p4: {title:'Engineering Insight Channel',tldr:'AI-assisted content pipeline for practical engineering knowledge.',results:[{val:'3×',label:'Output increase'},{val:'1',label:'Unified pipeline'},{val:'↑',label:'Audience growth'}]},
-      p5: {title:'Reliability Stress Correlation Study',tldr:'HTOL/HAST correlation study enabling safer process window expansion.',results:[{val:'15%',label:'Window expanded'},{val:'1',label:'Platform qualified'},{val:'0',label:'Yield impact'}]}
+      p5: {title:'Reliability Stress Correlation Study',tldr:'HTOL/HAST correlation study enabling safer process window expansion.',results:[{val:'15%',label:'Window expanded'},{val:'1',label:'Platform qualified'},{val:'0',label:'Yield impact'}]},
+      p6: {title:'Market Research Dashboard (Pro)',tldr:'Public market dashboard integrating Fear & Greed, VIX, Shiller PE, and ETF signals with post-market snapshot updates.',results:[{val:'24/7',label:'Public access'},{val:'Daily',label:'Post-market updates'},{val:'11+',label:'Key market indicators'}],link:'https://amoleskyhigh.github.io/felix-market-dashboard/market-dashboard.html'}
     };
 
     function showSection(id){
@@ -213,9 +216,10 @@
     function showProject(id){
       const p=projects[id]; if(!p) return;
       const results=(p.results||[]).map(r=>`<div class='meta-box'><div class='mb-val'>${r.val}</div><div class='mb-label'>${r.label}</div></div>`).join('');
+      const linkBtn = p.link ? `<div style='margin:1rem 0 0'><a class='btn btn-primary' target='_blank' rel='noopener' href='${p.link}'>Open Live Dashboard ↗</a></div>` : '';
       document.getElementById('project-detail-content').innerHTML = `
         <h1 style='font-size:clamp(1.8rem,4vw,3rem); margin-bottom:.5rem'>${p.title}</h1>
-        <div class='pd-tldr'><p>${p.tldr}</p></div>
+        <div class='pd-tldr'><p>${p.tldr}</p>${linkBtn}</div>
         <div class='pd-meta-grid'>${results}</div>
       `;
       showSection('project-detail');
